@@ -19,7 +19,7 @@ import caffe #Caffe Lib
 # Choose between 'DRIVE', 'RIMONE'
 database = 'DRIVE' #'RIMONE' #'COB' #
 img_exp = 'NEURONS'
-iter_weights = '530'
+iter_weights = '1060'
 experiment = 'exp12'
 
 net_struct = models_root+'/'+database+'/deploy_'+database+'.prototxt'
@@ -28,10 +28,10 @@ net_struct = models_root+'/'+database+'/deploy_'+database+'.prototxt'
 #net_weights = models_root+'/'+'DRIVE/DRIU_DRIVE.caffemodel'
 #net_weights = models_root+'/'+'COB/DRIU_COB.caffemodel'
 #net_weights = models_root+'/NEURONS_RIMONE/'+experiment+'/RIMONE_train_iter_'+iter_weights+'.caffemodel'
-net_weights = models_root+'/NEURONS_DRIVE/'+experiment+'/RIMONE_train_iter_'+iter_weights+'.caffemodel'
-data_names = data_root+img_exp+'/val.lst'
-data_root = data_root+'/'+img_exp+'/'
-save_root = '../Results/'+img_exp+'/'+'/val_'+database+'_'+experiment+'/'
+net_weights = '0003/RIMONE_train_iter_1060.caffemodel'
+data_names = '0003/val.lst'
+data_root = 'evaluation/'
+save_root = '../Results/'+'/val_'+database+'_'+experiment+'/'
 
 caffe.set_device(1)
 caffe.set_mode_gpu()
