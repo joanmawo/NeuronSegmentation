@@ -20,7 +20,7 @@ mkdir ANNOTATIONS
 
 %% DATA AND ANNOTATION EXPANSION
 % Get annotations
-ann_name = strcat(ORIGIN,'/neurofinder.',dataSet,'.tiff');
+ann_name = strcat(ORIGIN,'/Annotations/neurofinder.00.03.tiff');
 ann = imread(ann_name); 
 [row col] = size(ann);
 ann = im2double(ann);
