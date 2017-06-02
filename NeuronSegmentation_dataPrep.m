@@ -1,26 +1,26 @@
-% Scripts that dowloads, unzips, and expands annotations for training DRIU's CNN for neuron segmentation.
+% Script that dowloads, unzips, and expands annotations for training DRIU's CNN for neuron segmentation.
 % 
 
-dataSet = '00.03';
+dataSet = '0003';
 cropSize = 400; % Defined final size of all images
 
-ORIGIN = strcat('neurofinder.',dataSet);
+ORIGIN = strcat(dataSet);
 IMAGES = strcat(ORIGIN,'/images');
 CROPS = strcat('crops/images');
 ANNOTATIONS = strcat('crops/annotations');
 
 %% DATA DOWNLOAD %%%
-% Uncomment only if you wish to unload timelapses from the dataset
-websave(dataSet,'https://www.dropbox.com/sh/fy1x3nzkgcb47nm/AAByn1dQDUZ7nH17Z2EK7Rc6a?dl=0');
-unzip(strcat(dataSet,'.zip'));
+% Downloads the complete folder with training images, 
+ websave(dataSet,'https://www.dropbox.com/sh/fy1x3nzkgcb47nm/AAByn1dQDUZ7nH17Z2EK7Rc6a?dl=0');
+ unzip(strcat(dataSet,'.zip'));
 
-mkdir IMAGES
+mkdir crops
 mkdir CROPS
 mkdir ANNOTATIONS 
 
 %% DATA AND ANNOTATION EXPANSION
 % Get annotations
-ann_name = strcat(ORIGIN,'/Annotations/neurofinder.00.03.tiff');
+ann_name = strcat(IMAGES,'/Annotations/neurofinder.00.03.tiff');
 ann = imread(ann_name); 
 [row col] = size(ann);
 ann = im2double(ann);
@@ -84,13 +84,13 @@ imwrite(new_image,strcat(ORIGIN,'/3-channel',dataSet,'.tiff'));  % Saves the 3-c
     lim_row = row - cropSize; % Limiting sizes come from the image resizing
     lim_col = col - cropSize;
     
- 	for i=1:50:lim_row
-        for j=1:50:lim_col  
+ 	for i=1:100:lim_row
+        for j=1:100:lim_col  
         
         im_cropped = new_image(i:i+cropSize, j:j+cropSize, :);
         ann_cropped = ann(i:i+cropSize, j:j+cropSize);
     
-            for deg=0:90:270
+            for deg=0:180:181
             im_cropped_r = imrotate(im_cropped,deg);
             ann_cropped_r = imrotate(ann_cropped,deg);
         
