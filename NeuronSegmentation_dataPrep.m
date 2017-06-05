@@ -5,7 +5,7 @@ dataSet = '0003';
 cropSize = 400; % Defined final size of all images
 
 ORIGIN = strcat(dataSet);
-IMAGES = strcat(ORIGIN,'/images');
+IMAGES = strcat(ORIGIN,'/Images');
 CROPS = strcat('crops/images');
 ANNOTATIONS = strcat('crops/annotations');
 
