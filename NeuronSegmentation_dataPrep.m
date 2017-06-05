@@ -1,4 +1,4 @@
- Script that dowloads, unzips, and expands annotations for training DRIU's CNN for neuron segmentation.
+% Script that dowloads, unzips, and expands annotations for training DRIU's CNN for neuron segmentation.
 % 
 
 dataSet = '0003';
