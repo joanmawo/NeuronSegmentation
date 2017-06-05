@@ -1,4 +1,4 @@
-% Script that dowloads, unzips, and expands annotations for training DRIU's CNN for neuron segmentation.
+ Script that dowloads, unzips, and expands annotations for training DRIU's CNN for neuron segmentation.
 % 
 
 dataSet = '0003';
@@ -11,16 +11,20 @@ ANNOTATIONS = strcat('crops/annotations');
 
 %% DATA DOWNLOAD %%%
 % Downloads the complete folder with training images, 
- websave(dataSet,'https://www.dropbox.com/sh/fy1x3nzkgcb47nm/AAByn1dQDUZ7nH17Z2EK7Rc6a?dl=0');
- unzip(strcat(dataSet,'.zip'));
+ outname = websave(strcat(dataSet,'.zip'),'https://www.dropbox.com/s/mmt7vzcp7e3jacm/0003.zip?dl=1');
+ %%% removal https://1fichier.com/remove/ay5dxaya66/oAXAL
+% unzip(strcat(dataSet,'.zip'));
+unzip(outname);
 
 mkdir crops
+mkdir('crops/images')
+mkdir('crops/annotations')
 mkdir CROPS
 mkdir ANNOTATIONS 
 
 %% DATA AND ANNOTATION EXPANSION
 % Get annotations
-ann_name = strcat(IMAGES,'/Annotations/neurofinder.00.03.tiff');
+ann_name = strcat(ORIGIN,'/Annotations/neurofinder.00.03.tiff');
 ann = imread(ann_name); 
 [row col] = size(ann);
 ann = im2double(ann);
@@ -108,5 +112,3 @@ imwrite(new_image,strcat(ORIGIN,'/3-channel',dataSet,'.tiff'));  % Saves the 3-c
         end
         
     end
-
-end
